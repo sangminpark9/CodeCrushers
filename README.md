@@ -21,5 +21,5 @@
 - Assignee - 자신
 - Reviewers - 그 주의 자기 리뷰어
 - Labels - 푼 문제의 알고리즘 분류 | ex) 누적합
-
-# 출처 : *therealjamesjung/CodingTestKiller 정잭영
+---
+출처 : *therealjamesjung/CodingTestKiller 정잭영
