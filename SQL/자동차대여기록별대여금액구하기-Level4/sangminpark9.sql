@@ -1,0 +1,20 @@
+SELECT
+      r.HISTORY_ID,
+      CASE
+          WHEN DATEDIFF(r.END_DATE, r.START_DATE) + 1 >= 90 
+          THEN ROUND((DATEDIFF(r.END_DATE, r.START_DATE) + 1) * c.DAILY_FEE * 0.85, 0)
+          
+          WHEN DATEDIFF(r.END_DATE, r.START_DATE) + 1 >= 30
+          THEN ROUND((DATEDIFF(r.END_DATE, r.START_DATE) + 1) * c.DAILY_FEE * 0.92, 0)
+          
+          WHEN DATEDIFF(r.END_DATE, r.START_DATE) + 1 >= 7 
+          THEN ROUND((DATEDIFF(r.END_DATE, r.START_DATE) + 1) * c.DAILY_FEE * 0.95, 0)
+          
+          ELSE (DATEDIFF(r.END_DATE, r.START_DATE) + 1) * c.DAILY_FEE
+          
+      END AS FEE
+      
+FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY AS r
+JOIN CAR_RENTAL_COMPANY_CAR as c ON c.CAR_ID = r.CAR_ID
+WHERE c.CAR_TYPE = '트럭'
+ORDER BY FEE DESC, r.HISTORY_ID DESC
