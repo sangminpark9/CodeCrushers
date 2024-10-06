@@ -1,34 +1,31 @@
 from collections import deque
     
 def solution(rectangle, characterX, characterY, itemX, itemY):
-    filed = [[-1] * 102 for _ in range(102)]
-    
+    field = [[-1] * 102 for _ in range(102)]
+
     for r in rectangle:
-        x1, y1, x2, y2 = r[0] *2, r[1] *2, r[2] *2, r[3] *2
-        for x in range(x1,x2+1):
-            for y in range(y1,y2+1):
+        x1, y1, x2, y2 = map(lambda x:x*2, r)
+        for x in range(x1, x2 + 1):
+            for y in range(y1, y2 + 1):
                 if x1 < x < x2 and y1 < y < y2:
-                    filed[x][y] = 0
-                elif filed[x][y] != 0:                   # 테두리는 1
-                    filed[x][y] = 1
+                    field[x][y] = 0
+                elif field[x][y] != 0:
+                    field[x][y] = 1
     
     q = deque()
-    q.append((characterX *2, characterY *2, 0))
-    
+    q.append((characterX * 2,characterY * 2, 0))
     visited = [[False] * 102 for _ in range(102)]
-    visited[characterX *2][characterY*2] = True
-
+    visited[characterX *2][characterY*2]
     dx, dy = [1,-1,0,0], [0,0,1,-1]
     while q:
-        cx, cy, steps = q.popleft()
-        if (cx, cy) == (itemX *2 , itemY * 2):
-            return steps // 2
+        x, y, step = q.popleft()
+        if (x,y) == (itemX *2, itemY *2 ):
+            return step // 2
     
         for i in range(4):
-            nx, ny = cx + dx[i], cy + dy[i]
-            if 0 <= nx < 102 and 0 <= ny < 102:
-                if visited[nx][ny] == False and filed[nx][ny] == 1:
-                    visited[nx][ny] = True
-                    q.append((nx, ny, steps + 1))
-                    
+            nx, ny = x + dx[i], y + dy[i]
+            if 0 <= nx < 102 and 0 <= ny < 102 and visited[nx][ny] == False and field[nx][ny] == 1:
+                visited[nx][ny] = True
+                q.append((nx,ny,step + 1))
+
     return 0
