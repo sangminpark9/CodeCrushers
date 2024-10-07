@@ -1,0 +1,14 @@
+WITH skill_t AS (
+    SELECT
+        CODE
+    FROM SKILLCODES
+    WHERE CATEGORY = 'Front End'
+)
+SELECT DISTINCT
+    d.ID,
+    d.EMAIL,
+    d.FIRST_NAME,
+    d.LAST_NAME
+FROM DEVELOPERS AS d
+JOIN skill_t AS s ON (d.SKILL_CODE & s.CODE) > 0
+ORDER BY d.ID ASC
