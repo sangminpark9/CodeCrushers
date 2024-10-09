@@ -1,6 +1,6 @@
 import heapq
 
-V, E = map(int, input().split)
+V, E = map(int, input().split())
 K = int(input())
 
 graph = [[] for _ in range(V+1)]
