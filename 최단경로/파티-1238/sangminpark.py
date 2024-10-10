@@ -7,7 +7,7 @@ for _ in range(E):
     v,e,w = map(int, sys.stdin.readline().split())
     graph[v].append((e,w))
 
-def dijkstra(start, end): # 그냥 X부터 시작해서, distance가 가장 먼 곳을 출력한다면?
+def dijkstra(start, end):
 
     distances = [float('INF')] * (V+1)
     distances[start] = 0
