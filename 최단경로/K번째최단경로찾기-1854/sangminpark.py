@@ -14,6 +14,7 @@ def dikjstra(start):
 
     while queue:
         current_distance, current_vertex = heapq.heappop(queue)
+        # 최단경로가 아니니까 그저 K번째로 도착한 distance만 저장했음
         if len(distances[current_vertex]) == K:
             continue
         distances[current_vertex].append(current_distance)
